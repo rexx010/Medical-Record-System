@@ -11,7 +11,7 @@ class Doctor:
 
     def set_id(self, doctor_id):
         if not doctor_id:
-            raise ValueError("ID cannot be empty")
+            raise ValueError("ID be empty")
         self.doctor_id = doctor_id
 
     def get_name(self):
