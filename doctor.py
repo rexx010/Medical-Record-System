@@ -1,38 +1,49 @@
 
 class Doctor:
-    def __init__(self, doctor_id, name, specialisation, contact_info: dict):
-        self.set_id(doctor_id)
-        self.set_name(name)
-        self.set_specialisation(specialisation)
-        self.set_contact_info(contact_info)
+    did_counter = 0
 
-    def get_doctor_id(self):
-        return self.doctor_id
-
-    def set_id(self, doctor_id):
-        if not doctor_id:
-            raise ValueError("ID cannot be empty")
-        self.doctor_id = doctor_id
-
-    def get_name(self):
-        return self.name
-
-    def set_name(self, name):
-        if not name:
-            raise ValueError("Name cannot be empty")
+    def __init__(self, name, specialisation, contact_info: dict):
+        self.id = self.__create_id()
         self.name = name
-
-    def get_specialisation(self):
-        return self.specialisation
-
-    def set_specialisation(self, specialisation):
-        if not specialisation:
-            raise ValueError("Specialisation cannot be empty")
         self.specialisation = specialisation
-
-
-    def get_contact_info(self):
-        return self.contact_info
-
-    def set_contact_info(self, contact_info):
         self.contact_info = contact_info
+
+    @classmethod
+    def __create_id(cls):
+        cls.did_counter += 1
+        return f"DOC{cls.did_counter}"
+
+    @property
+    def get_id(self):
+        return self.id
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, name):
+       self.__name = name
+
+    @property
+    def specialisation(self):
+        return self.__specialisation
+
+    @specialisation.setter
+    def specialisation(self, specialisation):
+       self.__specialisation = specialisation
+
+    @property
+    def contact_info(self):
+        return self.__contact_info
+
+    @contact_info.setter
+    def contact_info(self, contact_info):
+        self.__contact_info = contact_info
+
+
+    def __str__(self):
+        return (f'Name: {self.name}.\n'
+                f'Specialisation: {self.specialisation}.\n'
+                f'Assigned ID: {self.get_id}')
+
