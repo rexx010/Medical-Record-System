@@ -1,104 +1,68 @@
 from datetime import datetime
-class patient(object):
-    def __init__(self, firstname, lastname, age, gender, dob, address, email, phone):
-        self.firstname = firstname
-        self.lastname = lastname
-        self.age = age
-        self.gender = gender
+
+class Patient:
+    patient_id_counter = 0
+
+    def __init__(self, name: str, dob: str, problem: str, speciality_needed: str ,contact_info: dict):
+        self.id = self.__create_id()
+        self.name = name
         self.dob = dob
-        self.address = address
-        self.email = email
-        self.phone = phone
-        self.medicalrecord_history = []
+        self.problem = problem
+        self.speciality_needed = speciality_needed
+        self.contact_info = contact_info
+
+    @classmethod
+    def __create_id(cls):
+        cls.patient_id_counter += 1
+        return f"PAT{cls.patient_id_counter}"
 
     @property
-    def firstname(self):
-        return self._firstname
-
-    @firstname.setter
-    def firstname(self, value):
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError("Firstname must be a non-empty string")
-        self._firstname = value
+    def get_id(self):
+        return self.id
 
     @property
-    def lastname(self):
-        return self._lastname
+    def name(self):
+        return self.__name
 
-    @lastname.setter
-    def lastname(self, value):
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError("Lastname must be a non-empty string")
-        self._lastname = value
-
-    @property
-    def age(self):
-        return self._age
-
-    @age.setter
-    def age(self, value):
-        if not isinstance(value, int) or value <= 0:
-            raise ValueError("Age must be a positive integer")
-        self._age = value
-
-    @property
-    def gender(self):
-        return self._gender
-
-    @gender.setter
-    def gender(self, value):
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError("Gender must be a non-empty string")
-        self._gender = value
+    @name.setter
+    def name(self, name):
+        self.__name = name
 
     @property
     def dob(self):
-        return self._dob
+        return self.__dob
 
     @dob.setter
-    def dob(self, value):
-        try:
-            datetime.strptime(value, "%d, %m, %Y")
-        except ValueError:
-            raise ValueError("DOB must be in the format 'DD, MM, YYYY'")
-        self._dob = value
+    def dob(self, dob):
+        self.__dob = dob
 
     @property
-    def address(self):
-        return self._address
+    def problem(self):
+        return self.__problem
 
-    @address.setter
-    def address(self, value):
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError("Address must be a non-empty string")
-        self._address = value
+    @problem.setter
+    def problem(self, problem):
+        self.__problem = problem
 
     @property
-    def email(self):
-        return self._email
+    def speciality_needed(self):
+        return self.__speciality_needed
 
-    @email.setter
-    def email(self, value):
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError("Email must be a non-empty string")
-        self._email = value
+    @speciality_needed.setter
+    def speciality_needed(self, speciality_needed):
+        self.__speciality_needed = speciality_needed
 
     @property
-    def phone(self):
-        return self._phone
+    def contact_info(self):
+        return self.__contact_info
 
-    @phone.setter
-    def phone(self, value):
-        if not isinstance(value, str) or not value.strip():
-            raise ValueError("Phone must be a non-empty string")
-        if not value.isdigit() or len(value) != 11:
-            raise ValueError("Phone must be a string of 11 digits")
-        self._phone = value
+    @contact_info.setter
+    def contact_info(self, contact_info):
+        self.__contact_info = contact_info
 
-    def add_medical_record(self, record):
-        if not isinstance(record, str) or not record.strip():
-            raise ValueError("Medical record must be a non-empty string")
-        self.medicalrecord_history.append(record)
-
-
-
+    def __str__(self):
+        return (f"Name: Patient {self.name}.\n"
+                f"Date of birth: {self.dob}.\n"
+                f"Battling with {self.problem},\n"
+                f"Needs a doctor from the {self.speciality_needed} department\n"
+                f"Assigned ID: {self.get_id}")
