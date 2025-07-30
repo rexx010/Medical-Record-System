@@ -43,7 +43,8 @@ class Doctor:
 
 
     def __str__(self):
-        return (f'Name: {self.name}.\n'
+        return (f'Doctor name: {self.name}.\n'
+                f'Doctor contact: {self.contact_info}\n'
                 f'Specialisation: {self.specialisation}.\n'
                 f'Assigned ID: {self.get_id}')
 
