@@ -11,7 +11,7 @@ class Doctor:
     @classmethod
     def __create_id(cls):
         cls.did_counter += 1
-        return f"DOC{cls.did_counter}"
+        return f"DOC00{cls.did_counter}"
 
     @property
     def get_id(self):
@@ -43,8 +43,8 @@ class Doctor:
 
 
     def __str__(self):
-        return (f'Doctor name: {self.name}.\n'
+        return (f'Doctor name: Dr. {self.name}\n'
                 f'Doctor contact: {self.contact_info}\n'
-                f'Specialisation: {self.specialisation}.\n'
+                f'Specialisation: {self.specialisation}\n'
                 f'Assigned ID: {self.get_id}')
 
