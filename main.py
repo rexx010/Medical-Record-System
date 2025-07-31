@@ -22,11 +22,6 @@ press 11 to View all Doctors
 press 0 to Exit
 """
 
-while True:
-    print(message)
-    user_input = input("Enter your option: ")
-    print()
-
     match user_input:
 
         case "1":
