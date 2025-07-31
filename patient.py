@@ -63,6 +63,7 @@ class Patient:
     def __str__(self):
         return (f"Name: Patient {self.name}.\n"
                 f"Date of birth: {self.dob}.\n"
+                f"Contact: {self.contact_info}\n"
                 f"Battling with {self.problem},\n"
                 f"Needs a doctor from the {self.speciality_needed} department\n"
                 f"Assigned ID: {self.get_id}")
